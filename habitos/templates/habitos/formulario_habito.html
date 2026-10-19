@@ -1,0 +1,15 @@
+{% extends "habitos/base.html" %}
+
+{% block titulo %}Formulario de hábitos · FocusFlow{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <h2>Datos del hábitos</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" class="btn btn-verde">Guardar</button>
+        <a class="btn" href="{% url 'habitos:listar_habitos' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

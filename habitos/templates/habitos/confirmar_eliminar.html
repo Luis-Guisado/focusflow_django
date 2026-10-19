@@ -1,0 +1,15 @@
+{% extends "habitos/base.html" %}
+
+{% block titulo %}Eliminar hábito · FocusFlow{% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <h2>Eliminar hábito</h2>
+    <p>¿Seguro que quieres eliminar <strong>{{ habito.nombre}}</strong> Esta acción no se puede deshacer.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-rojo">Si, eliminar</button>
+        <a class="btn" href="{% url 'habitos:listar_habitos' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

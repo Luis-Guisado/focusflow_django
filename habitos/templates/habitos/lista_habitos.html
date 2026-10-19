@@ -1,0 +1,35 @@
+{% extends "habitos/base.html" %}
+
+{%block titulo %}Hábitos · FocusFlow{% endblock %}
+
+{%block contenido %}
+<div class="card">
+    <h2>Mis hábitos</h2>
+    <div class="acciones">
+        <a class="btn btn-verde" href="{% url 'habitos:crear_habito' %}">+ Nuevo hábito</a>
+    </div>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Frecuencia</th>
+            <th>Meta semanal</th>
+            <th>Acciones</th>
+        </tr>
+        {% for habito in habitos %}
+        <tr>
+            <td>{{ habito.nombre }}</td>
+            <td>{{ habito.categoria }}</td>
+            <td>{{ habito.get_frecuencia_display }}</td>
+            <td>{{ habito.meta_semanal }}</td>
+            <td>
+                <a class="btn" href="{% url 'habitos:editar_habito' habito.pk %}">Editar</a>
+                <a class="btn btn-rojo" href="{% url 'habitos:eliminar_habito' habito.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Aún no hay hábitos registrados.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
